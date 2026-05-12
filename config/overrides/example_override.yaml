@@ -1,0 +1,4 @@
+experiment:
+  seed: 123
+wandb:
+  wb_run_name: "proto_gaussian_override"

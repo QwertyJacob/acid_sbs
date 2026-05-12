@@ -1,0 +1,29 @@
+override: ""          # name of an override file in config/overrides/ (no .yaml extension)
+experiment:
+  seed: 42
+  device: "cpu"       # "cpu" or "cuda"
+data:
+  n_dims: 8           # dimensionality of the Gaussian blobs (N-D input features)
+  n_classes: 10       # total number of classes (blobs)
+  n_train_classes: 6  # how many classes are "known" at training time
+  noise: 1.0          # std of the Gaussian blobs
+  # Data is generated ONLINE — no n_samples_per_class.
+  # Blob centres are fixed once at init (seeded). Fresh samples are drawn every episode.
+  n_test_samples_per_class: 50  # fresh samples drawn per class at each test evaluation
+prototypical:
+  k_shot: 5           # support samples per class per episode
+  n_query: 15         # query samples per class per episode
+  hidden_dim: 64
+  n_layers: 2
+  dropout: 0.1
+  learning_rate: 1e-3
+  train_episodes: 300
+  report_every: 10    # log metrics to wandb every N episodes
+logging:
+  level: "INFO"       # DEBUG | INFO | WARNING | ERROR
+wandb:
+  wb_tracking: true
+  wb_project_name: "ACID_sbs"
+  wb_run_name: "proto_gaussian_baseline"
+  wb_group_name: "synthetic_experiments"
+  plots: true
